@@ -1,4 +1,5 @@
 const { merge } = require("webpack-merge");
+const path = require("path");
 const common = require("./webpack-config.common");
 
 module.exports = merge(common, {
@@ -11,7 +12,10 @@ module.exports = merge(common, {
     },
     compress: true,
     open: true,
-    static: "./build",
+    historyApiFallback: true,
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
   },
   stats: {
     errorDetails: true,

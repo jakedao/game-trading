@@ -1,15 +1,18 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 module.exports = {
   entry: "./src/index.tsx",
   output: {
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
-    path: path.resolve(__dirname, "build"),
-    clean: true,
+    assetModuleFilename: "images/[hash][ext]", // Compress asset module file with with this pattern
   },
-
   module: {
     rules: [
       {
@@ -23,11 +26,14 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
-        loader: "file-loader",
+        type: "asset/resource",
+        generator: {
+          filename: "assets/[hash][ext]",
+        },
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: "asset/resource",
+        type: "asset/inline",
       },
 
       {
@@ -48,15 +54,24 @@ module.exports = {
 
   plugins: [
     new HtmlWebpackPlugin({
-      template: "src/index.html",
+      template: "./public/index.html",
+      inject: true,
+      minify: false,
     }),
     // Split the css and bundle file separately
     new MiniCssExtractPlugin({
       filename: "styles.[contenthash].css",
     }),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
+    }),
   ],
 
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+      "@components": path.resolve(__dirname, "./src/components"),
+    },
   },
 };
