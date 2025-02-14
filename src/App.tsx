@@ -1,6 +1,11 @@
-import './index.scss';
+import { Layout, Listing } from "@components";
+import "./index.scss";
 
 const App = () => {
-  return <div>{"App"}</div>;
+  return (
+    <Layout>
+      <Listing />
+    </Layout>
+  );
 };
 export default App;
