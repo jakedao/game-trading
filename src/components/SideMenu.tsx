@@ -1,11 +1,11 @@
-import { Grid2, MenuItem } from "@mui/material";
+import { Grid, MenuItem } from "@mui/material";
 import { HEADER_HEIGHT } from "../constants";
 
 type TOwnProps = {};
 const SideMenu = (props: TOwnProps) => {
   const {} = props;
   return (
-    <Grid2
+    <Grid
       container
       direction="column"
       height={`calc(100vh - ${HEADER_HEIGHT}px)`}
@@ -15,7 +15,7 @@ const SideMenu = (props: TOwnProps) => {
       <MenuItem>A</MenuItem>
       <MenuItem>A</MenuItem>
       <MenuItem>A</MenuItem>
-    </Grid2>
+    </Grid>
   );
 };
 export default SideMenu;

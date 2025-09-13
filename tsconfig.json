@@ -1,6 +1,7 @@
 /* Visit https://aka.ms/tsconfig to read more about this file */
 {
   "compilerOptions": {
+    "baseUrl": "/",
     "rootDir": "src",
     "outDir": "dist",
     "lib": ["dom", "esnext"],
@@ -17,11 +18,11 @@
     "isolatedModules": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "jsx": "react-jsx",
     "typeRoots": ["node_modules/@types", "src/types"],
     "paths": {
-      "@": ["./src"],
+      "@/*": ["./src/*"],
       "@components": ["./src/components"]
     }
   },

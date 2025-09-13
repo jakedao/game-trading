@@ -21,7 +21,8 @@ export interface IMonster {
 
 export interface IItem {
   id: string;
-  main: IMonster[];
+  mons: IMonster[];
+  images?: string[];
   createdDate: string;
   status: EStatus;
   contact: string;

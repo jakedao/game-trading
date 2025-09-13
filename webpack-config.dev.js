@@ -15,6 +15,7 @@ module.exports = merge(common, {
     historyApiFallback: true,
     static: {
       directory: path.join(__dirname, "dist"),
+      publicPath: path.join(__dirname, "public/assets/"),
     },
   },
   stats: {

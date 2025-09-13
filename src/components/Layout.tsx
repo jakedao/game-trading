@@ -1,4 +1,4 @@
-import { Grid2 } from "@mui/material";
+import { Grid } from "@mui/material";
 import { ReactNode } from "react";
 import Header from "./Header";
 import SideMenu from "./SideMenu";
@@ -10,17 +10,16 @@ type TOwnProps = {
 const Layout = (props: TOwnProps) => {
   const { children } = props;
 
-  console.log("checking process", process.env);
   return (
-    <Grid2 container direction="column">
+    <Grid container direction="column">
       <Header />
-      <Grid2 container direction="row" columnSpacing={2}>
-        <Grid2 size={3}>
+      <Grid container direction="row" columnSpacing={2}>
+        <Grid size={3}>
           <SideMenu />
-        </Grid2>
-        <Grid2 size={9}>{children}</Grid2>
-      </Grid2>
-    </Grid2>
+        </Grid>
+        <Grid size={9}>{children}</Grid>
+      </Grid>
+    </Grid>
   );
 };
 

@@ -9,6 +9,7 @@ dotenv.config();
 module.exports = {
   entry: "./src/index.tsx",
   output: {
+    publicPath: "/assets/",
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
     assetModuleFilename: "images/[hash][ext]", // Compress asset module file with with this pattern
@@ -22,7 +23,19 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          {
+            loader: "sass-loader",
+            options: {
+              api: "modern",
+              sassOptions: {
+                // Your sass options
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
@@ -70,7 +83,7 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".js"],
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@/*": path.resolve(__dirname, "./src/*"),
       "@components": path.resolve(__dirname, "./src/components"),
     },
   },
